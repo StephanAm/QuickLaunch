@@ -4,8 +4,7 @@ InstallDir "$PROGRAMFILES\QuickLaunch"
 # open section
 Section
     SetOutPath $InstDir
-    File "readme.txt"
-    File /r ".\Source\*"
+    File /r "..\QuickLaunch\bin\Release\*"
 
     # Show Success message.
     MessageBox MB_OK "Installed to $InstDir"
