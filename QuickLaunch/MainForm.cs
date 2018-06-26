@@ -16,6 +16,7 @@ namespace QuickLaunch
     {
         private Dictionary<string, Image> _images = new Dictionary<string, Image>();
         private readonly QuickLaunchApi _api;
+        private bool allowClose = false;
         public MainForm(QuickLaunchApi api)
         {
             _api = api;
@@ -32,7 +33,10 @@ namespace QuickLaunch
         private void popuLateContextMenu()
         {
             this.contextMenuStrip.Items.Clear();
+            this.contextMenuStrip.Items.Add(this.fixedContextMenuItems);
+            this.contextMenuStrip.Items.Add(new ToolStripSeparator());
             var items = _api.GetAllItems().GroupBy(i => i.Group ?? i.Handler);
+
             foreach(var group in items)
             {
 
@@ -76,6 +80,7 @@ namespace QuickLaunch
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (allowClose) return;
             e.Cancel = true;
             this.ShowInTaskbar = false;
             this.Visible = false;
@@ -85,6 +90,12 @@ namespace QuickLaunch
         {
             this.Visible = true;
             this.ShowInTaskbar = true;
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.allowClose = true;
+            this.Close();
         }
     }
 }
