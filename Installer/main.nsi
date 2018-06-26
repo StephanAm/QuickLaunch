@@ -9,7 +9,11 @@ Section
 
     # Show Success message.
     MessageBox MB_OK "Installed to $InstDir"
- 
+    WriteUninstaller $InstDir\uninstall.exe
  
 # end the section
+SectionEnd
+
+Section "Uninstall"
+    RMDir /r $InstDir
 SectionEnd
