@@ -1,6 +1,7 @@
 # declare name of installer file
-Outfile "hello world.exe"
+Outfile $%installerName%
 InstallDir "$PROGRAMFILES\QuickLaunch"
+
 # open section
 Section
     SetOutPath $InstDir

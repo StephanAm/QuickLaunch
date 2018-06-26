@@ -14,20 +14,21 @@ namespace QuickLaunch
 {
     public partial class MainForm : Form
     {
+        private readonly Api _api = new Api();
         private Dictionary<string, Image> _images = new Dictionary<string, Image>();
-        private readonly QuickLaunchApi _api;
+        private readonly QuickLaunchApi _quickLaunchApi;
         private bool allowClose = false;
         public MainForm(QuickLaunchApi api)
         {
-            _api = api;
+            _quickLaunchApi = api;
             InitializeComponent();
             LoadImages();
             loadData();
         }
         private void loadData()
         {
-            this.handlerColumn.DataSource = _api.GetHandlerKeys();
-            this.quickLaunchItemBindingSource.DataSource = _api.GetAllItems();
+            this.handlerColumn.DataSource = _quickLaunchApi.GetHandlerKeys();
+            this.quickLaunchItemBindingSource.DataSource = _quickLaunchApi.GetAllItems();
             popuLateContextMenu();
         }
         private void popuLateContextMenu()
@@ -35,7 +36,7 @@ namespace QuickLaunch
             this.contextMenuStrip.Items.Clear();
             this.contextMenuStrip.Items.Add(this.fixedContextMenuItems);
             this.contextMenuStrip.Items.Add(new ToolStripSeparator());
-            var items = _api.GetAllItems().GroupBy(i => i.Group ?? i.Handler);
+            var items = _quickLaunchApi.GetAllItems().GroupBy(i => i.Group ?? i.Handler);
 
             foreach(var group in items)
             {
@@ -50,7 +51,7 @@ namespace QuickLaunch
         }
         private void LoadImages()
         {
-            foreach (var handlerInfo in _api.GetHandlerInfo())
+            foreach (var handlerInfo in _quickLaunchApi.GetHandlerInfo())
             {
                 _images[handlerInfo.HandlerKey] = handlerInfo.HandlerIcon == null
                     ? null
@@ -59,9 +60,9 @@ namespace QuickLaunch
         }
         private ToolStripMenuItem MapToToolStripMenuItem(QuickLaunchItem item)
         {
-            var handlerInfo = _api.GetHandlerInfo(item.Handler);
+            var handlerInfo = _quickLaunchApi.GetHandlerInfo(item.Handler);
             var image = _images[handlerInfo.HandlerKey];
-            return new ToolStripMenuItem(item.DisplayName, image, (s, e) => _api.Handle(item));
+            return new ToolStripMenuItem(item.DisplayName, image, (s, e) => _quickLaunchApi.Handle(item));
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -70,7 +71,7 @@ namespace QuickLaunch
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            _api.UpdateOrCreate(quickLaunchItemBindingSource.List.Cast<QuickLaunchItem>());
+            _quickLaunchApi.UpdateOrCreate(quickLaunchItemBindingSource.List.Cast<QuickLaunchItem>());
         }
 
         private void buttonReload_Click(object sender, EventArgs e)
@@ -96,6 +97,17 @@ namespace QuickLaunch
         {
             this.allowClose = true;
             this.Close();
+        }
+
+        private void autoStartToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            switch(MessageBox.Show("Start automatically when windows starts?",
+                "Auto Start",
+                MessageBoxButtons.YesNo))
+            {
+                case DialogResult.Yes:_api.SetStartWithWindows(true);break;
+                case DialogResult.No:_api.SetStartWithWindows(false);break;
+            }
         }
     }
 }

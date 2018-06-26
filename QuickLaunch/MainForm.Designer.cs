@@ -46,6 +46,7 @@ namespace QuickLaunch
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.fixedContextMenuItems = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.autoStartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -174,7 +175,8 @@ namespace QuickLaunch
             // 
             this.fixedContextMenuItems.DoubleClickEnabled = true;
             this.fixedContextMenuItems.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exitToolStripMenuItem});
+            this.exitToolStripMenuItem,
+            this.autoStartToolStripMenuItem});
             this.fixedContextMenuItems.Name = "fixedContextMenuItems";
             this.fixedContextMenuItems.Size = new System.Drawing.Size(130, 24);
             this.fixedContextMenuItems.Text = "Options";
@@ -185,6 +187,13 @@ namespace QuickLaunch
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // autoStartToolStripMenuItem
+            // 
+            this.autoStartToolStripMenuItem.Name = "autoStartToolStripMenuItem";
+            this.autoStartToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.autoStartToolStripMenuItem.Text = "Auto Start";
+            this.autoStartToolStripMenuItem.Click += new System.EventHandler(this.autoStartToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -222,5 +231,6 @@ namespace QuickLaunch
         private System.Windows.Forms.DataGridViewTextBoxColumn uRIDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn handlerColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn groupDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ToolStripMenuItem autoStartToolStripMenuItem;
     }
 }
