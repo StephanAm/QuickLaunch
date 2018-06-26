@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickLaunch", "QuickLaunch\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickLaunchManager", "QuickLaunchManager\QuickLaunchManager.csproj", "{F5924E76-49CC-4355-AF0D-149629A5FE22}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Publish script", "Publish script\Publish script.pyproj", "{2C8CEF0E-309D-4808-B092-89EE1832B45E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,8 +21,6 @@ Global
 		{F5924E76-49CC-4355-AF0D-149629A5FE22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5924E76-49CC-4355-AF0D-149629A5FE22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5924E76-49CC-4355-AF0D-149629A5FE22}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2C8CEF0E-309D-4808-B092-89EE1832B45E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2C8CEF0E-309D-4808-B092-89EE1832B45E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
