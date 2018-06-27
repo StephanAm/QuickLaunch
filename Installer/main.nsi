@@ -1,6 +1,7 @@
 # declare name of installer file
-Outfile "hello world.exe"
+Outfile $%installerName%
 InstallDir "$PROGRAMFILES\QuickLaunch"
+
 # open section
 Section
     SetOutPath $InstDir
@@ -8,7 +9,11 @@ Section
 
     # Show Success message.
     MessageBox MB_OK "Installed to $InstDir"
- 
+    WriteUninstaller $InstDir\uninstall.exe
  
 # end the section
+SectionEnd
+
+Section "Uninstall"
+    RMDir /r $InstDir
 SectionEnd
