@@ -38,7 +38,7 @@ namespace QuickLaunch
             this.contextMenuStrip.Items.Add(new ToolStripSeparator());
             var items = _quickLaunchApi.GetAllItems().GroupBy(i => i.Group ?? i.Handler);
 
-            foreach(var group in items)
+            foreach (var group in items)
             {
 
                 var menuItem = new ToolStripMenuItem(group.Key);
@@ -81,10 +81,12 @@ namespace QuickLaunch
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (allowClose) return;
-            e.Cancel = true;
-            this.ShowInTaskbar = false;
-            this.Visible = false;
+            if (!allowClose && e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                this.ShowInTaskbar = false;
+                this.Visible = false;
+            }
         }
 
         private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)

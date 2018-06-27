@@ -72,5 +72,12 @@
 	  <Handler>Command Prompt</Handler>
       <Group>MyLiberty</Group>
     </QuickLaunchItem>
+    <QuickLaunchItem>
+      <Id>4858f272-224e-4742-9818-4053e91d4261</Id>
+      <DisplayName>Repos</DisplayName>
+      <URI>C:\Users\stephan.marais\source\repos</URI>
+	  <Handler>Command Prompt</Handler>
+      <Group>Development</Group>
+    </QuickLaunchItem>
   </items>
 </XmlDb>

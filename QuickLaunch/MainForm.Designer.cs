@@ -159,7 +159,7 @@ namespace QuickLaunch
             // 
             this.notifyIcon.ContextMenuStrip = this.contextMenuStrip;
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
-            this.notifyIcon.Text = "notifyIcon1";
+            this.notifyIcon.Text = "Quick Launch";
             this.notifyIcon.Visible = true;
             this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
             // 
@@ -184,14 +184,14 @@ namespace QuickLaunch
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(151, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // autoStartToolStripMenuItem
             // 
             this.autoStartToolStripMenuItem.Name = "autoStartToolStripMenuItem";
-            this.autoStartToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.autoStartToolStripMenuItem.Size = new System.Drawing.Size(151, 26);
             this.autoStartToolStripMenuItem.Text = "Auto Start";
             this.autoStartToolStripMenuItem.Click += new System.EventHandler(this.autoStartToolStripMenuItem_Click);
             // 
@@ -202,7 +202,7 @@ namespace QuickLaunch
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.splitContainer1);
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "Quick Launch Edit";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
