@@ -65,10 +65,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiFactory.cs" />
+    <Compile Include="Config\QuickLaunchAppConfig.cs" />
     <Compile Include="Handlers\BaseHandler.cs" />
     <Compile Include="Handlers\CommandPromptHandler.cs" />
     <Compile Include="Handlers\WebUrlHandler.cs" />
     <Compile Include="Models\HandlerInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="QuickLaunchApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repo\IRepo.cs" />
@@ -79,7 +85,12 @@
     <Compile Include="Validation\ItemValidator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Handlers\cmdIcon.bmp">

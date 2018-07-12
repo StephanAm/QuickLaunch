@@ -1,4 +1,5 @@
-﻿using QuickLaunchManager.Handlers;
+﻿using QuickLaunchManager.Config;
+using QuickLaunchManager.Handlers;
 using QuickLaunchManager.Models;
 using QuickLaunchManager.Repo;
 using QuickLaunchManager.Validation;
@@ -16,7 +17,8 @@ namespace QuickLaunchManager
         public QuickLaunchApi(
             IRepo repo,
             IItemValidator validator,
-            BaseHandler[] handlers)
+            BaseHandler[] handlers,
+            QuickLaunchAppConfig config)
         {
             _repo = repo;
             _validator = validator;

@@ -10,11 +10,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Unity;
 using Unity.Injection;
+using QuickLaunchManager.Config;
+using System.IO;
+using Unity.Lifetime;
 
 namespace QuickLaunchManager
 {
     public class ApiFactory
     {
+        
         private readonly IUnityContainer _container;
         public ApiFactory()
         {
@@ -24,15 +28,28 @@ namespace QuickLaunchManager
         {
             return _container.Resolve<QuickLaunchApi>();
         }
+        private QuickLaunchAppConfig GetConfig()
+        {
+            var config = new QuickLaunchAppConfig();
+            config.AppName = "QuickLaunch";
+            config.DataPath = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                config.AppName);
+            config.XmlRepoFileName = "quickLaunch.xml";
+            return config;
+
+        }
 
         private IUnityContainer CreateContainer()
         {
             var container = new UnityContainer();
+            container.RegisterType<QuickLaunchAppConfig>(
+                new SingletonLifetimeManager(),
+                new InjectionFactory(c=>GetConfig())
+                );
+            var config = container.Resolve<QuickLaunchAppConfig>();
             var handlerTypes = GetHandlers<BaseHandler>();
-            /*foreach (var t in handlerTypes)
-            {
-                container.RegisterType(t);
-            }*/
+            
             container.RegisterType<BaseHandler[]>(
                 new InjectionFactory(
                     c=> {
@@ -43,7 +60,7 @@ namespace QuickLaunchManager
             container.RegisterType<WebUrlHandler>();
             container.RegisterType<IItemValidator, ItemValidator>();
             container.RegisterType<IRepo>(new InjectionFactory(c => 
-                new XmlRepo("quickLaunch.xml")
+                new XmlRepo(Path.Combine(config.DataPath,config.XmlRepoFileName))
             ));
 
             container.RegisterType<QuickLaunchApi>();
