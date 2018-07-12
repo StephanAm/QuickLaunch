@@ -111,5 +111,24 @@ namespace QuickLaunch
                 case DialogResult.No:_api.SetStartWithWindows(false);break;
             }
         }
+
+        private void New_Click(object sender, EventArgs e)
+        {
+            createNewItemDialogueAction();
+        }
+        private void createNewItemDialogueAction()
+        {
+            var dialog = new CreateNewDialog(_quickLaunchApi.GetHandlerInfo());
+            var result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                _quickLaunchApi.AddItem(dialog.Item);
+            }
+        }
+
+        private void createNewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            createNewItemDialogueAction();
+        }
     }
 }

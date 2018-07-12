@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace QuickLaunch.Properties {
+namespace QuickLaunchManager.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -26,9 +26,9 @@ namespace QuickLaunch.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Setting {
+        public string XmlRepoPath {
             get {
-                return ((string)(this["Setting"]));
+                return ((string)(this["XmlRepoPath"]));
             }
         }
     }

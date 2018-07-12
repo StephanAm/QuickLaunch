@@ -36,6 +36,7 @@ namespace QuickLaunch
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.displayNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CellContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.uRIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.handlerColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.groupDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,6 +48,8 @@ namespace QuickLaunch
             this.fixedContextMenuItems = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.autoStartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.New = new System.Windows.Forms.Button();
+            this.createNewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -69,14 +72,16 @@ namespace QuickLaunch
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.New);
             this.splitContainer1.Panel2.Controls.Add(this.buttonReload);
             this.splitContainer1.Panel2.Controls.Add(this.buttonSave);
             this.splitContainer1.Size = new System.Drawing.Size(800, 450);
-            this.splitContainer1.SplitterDistance = 382;
+            this.splitContainer1.SplitterDistance = 305;
             this.splitContainer1.TabIndex = 0;
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -90,7 +95,7 @@ namespace QuickLaunch
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(800, 382);
+            this.dataGridView1.Size = new System.Drawing.Size(800, 305);
             this.dataGridView1.TabIndex = 0;
             // 
             // idDataGridViewTextBoxColumn
@@ -103,13 +108,21 @@ namespace QuickLaunch
             // displayNameDataGridViewTextBoxColumn
             // 
             this.displayNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.displayNameDataGridViewTextBoxColumn.ContextMenuStrip = this.CellContextMenu;
             this.displayNameDataGridViewTextBoxColumn.DataPropertyName = "DisplayName";
             this.displayNameDataGridViewTextBoxColumn.HeaderText = "DisplayName";
             this.displayNameDataGridViewTextBoxColumn.Name = "displayNameDataGridViewTextBoxColumn";
             // 
+            // CellContextMenu
+            // 
+            this.CellContextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.CellContextMenu.Name = "CellContextMenu";
+            this.CellContextMenu.Size = new System.Drawing.Size(61, 4);
+            // 
             // uRIDataGridViewTextBoxColumn
             // 
             this.uRIDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.uRIDataGridViewTextBoxColumn.ContextMenuStrip = this.CellContextMenu;
             this.uRIDataGridViewTextBoxColumn.DataPropertyName = "URI";
             this.uRIDataGridViewTextBoxColumn.HeaderText = "URI";
             this.uRIDataGridViewTextBoxColumn.Name = "uRIDataGridViewTextBoxColumn";
@@ -127,6 +140,7 @@ namespace QuickLaunch
             // groupDataGridViewTextBoxColumn
             // 
             this.groupDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.groupDataGridViewTextBoxColumn.ContextMenuStrip = this.CellContextMenu;
             this.groupDataGridViewTextBoxColumn.DataPropertyName = "Group";
             this.groupDataGridViewTextBoxColumn.HeaderText = "Group";
             this.groupDataGridViewTextBoxColumn.Name = "groupDataGridViewTextBoxColumn";
@@ -137,7 +151,7 @@ namespace QuickLaunch
             // 
             // buttonReload
             // 
-            this.buttonReload.Location = new System.Drawing.Point(122, 19);
+            this.buttonReload.Location = new System.Drawing.Point(93, 106);
             this.buttonReload.Name = "buttonReload";
             this.buttonReload.Size = new System.Drawing.Size(75, 23);
             this.buttonReload.TabIndex = 1;
@@ -147,7 +161,7 @@ namespace QuickLaunch
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(41, 19);
+            this.buttonSave.Location = new System.Drawing.Point(12, 106);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
             this.buttonSave.TabIndex = 0;
@@ -169,31 +183,49 @@ namespace QuickLaunch
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fixedContextMenuItems});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(131, 28);
+            this.contextMenuStrip.Size = new System.Drawing.Size(211, 56);
             // 
             // fixedContextMenuItems
             // 
             this.fixedContextMenuItems.DoubleClickEnabled = true;
             this.fixedContextMenuItems.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exitToolStripMenuItem,
-            this.autoStartToolStripMenuItem});
+            this.autoStartToolStripMenuItem,
+            this.createNewToolStripMenuItem});
             this.fixedContextMenuItems.Name = "fixedContextMenuItems";
-            this.fixedContextMenuItems.Size = new System.Drawing.Size(130, 24);
+            this.fixedContextMenuItems.Size = new System.Drawing.Size(210, 24);
             this.fixedContextMenuItems.Text = "Options";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(151, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // autoStartToolStripMenuItem
             // 
             this.autoStartToolStripMenuItem.Name = "autoStartToolStripMenuItem";
-            this.autoStartToolStripMenuItem.Size = new System.Drawing.Size(151, 26);
+            this.autoStartToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.autoStartToolStripMenuItem.Text = "Auto Start";
             this.autoStartToolStripMenuItem.Click += new System.EventHandler(this.autoStartToolStripMenuItem_Click);
+            // 
+            // New
+            // 
+            this.New.Location = new System.Drawing.Point(12, 3);
+            this.New.Name = "New";
+            this.New.Size = new System.Drawing.Size(75, 23);
+            this.New.TabIndex = 2;
+            this.New.Text = "New";
+            this.New.UseVisualStyleBackColor = true;
+            this.New.Click += new System.EventHandler(this.New_Click);
+            // 
+            // createNewToolStripMenuItem
+            // 
+            this.createNewToolStripMenuItem.Name = "createNewToolStripMenuItem";
+            this.createNewToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.createNewToolStripMenuItem.Text = "Create New";
+            this.createNewToolStripMenuItem.Click += new System.EventHandler(this.createNewToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -226,11 +258,14 @@ namespace QuickLaunch
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem fixedContextMenuItems;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem autoStartToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn displayNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ContextMenuStrip CellContextMenu;
         private System.Windows.Forms.DataGridViewTextBoxColumn uRIDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn handlerColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn groupDataGridViewTextBoxColumn;
-        private System.Windows.Forms.ToolStripMenuItem autoStartToolStripMenuItem;
+        private System.Windows.Forms.Button New;
+        private System.Windows.Forms.ToolStripMenuItem createNewToolStripMenuItem;
     }
 }
