@@ -118,7 +118,9 @@ namespace QuickLaunch
         }
         private void createNewItemDialogueAction()
         {
-            var dialog = new CreateNewDialog(_quickLaunchApi.GetHandlerInfo());
+            var dialog = new CreateNewDialog(
+                _quickLaunchApi.GetHandlerInfo(),
+                _quickLaunchApi.Validate);
             var result = dialog.ShowDialog();
             if (result == DialogResult.OK)
             {

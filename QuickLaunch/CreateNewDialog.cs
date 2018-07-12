@@ -1,4 +1,5 @@
 ﻿using QuickLaunchManager.Models;
+using QuickLaunchManager.Validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +14,13 @@ namespace QuickLaunch
 {
     public partial class CreateNewDialog : Form
     {
+        private readonly Func<QuickLaunchItem, OperationResult> _validationFunc;
         public QuickLaunchItem Item { get; private set; }
-        public CreateNewDialog(IEnumerable<HandlerInfo> handlerInfo)
+        public CreateNewDialog(
+            IEnumerable<HandlerInfo> handlerInfo,
+            Func<QuickLaunchItem,OperationResult> validationFunction)
         {
+            _validationFunc = validationFunction;
             InitializeComponent();
             comboBoxType.Items.AddRange(handlerInfo.Select(h => new ComboBoxItem {
                 Text = h.HandlerName,
@@ -23,15 +28,29 @@ namespace QuickLaunch
             }).ToArray());        
         }
 
+        private bool Validate(QuickLaunchItem item)
+        {
+            var result = _validationFunc(item);
+            if (result == null) { return true; }
+            else
+            {
+                MessageBox.Show(result.Message, result.Reference, MessageBoxButtons.OK);
+                
+            }
+            return (result.Severity < Severity.Error);
+        }
         private void buttonOK_Click(object sender, EventArgs e)
         {
+            Func<string,string> nullifyIfBlank = (s) => string.IsNullOrWhiteSpace(s) ? null : s;
             Item = new QuickLaunchItem();
-            Item.DisplayName = textBoxDisplayName.Text;
-            Item.Group = textBoxGroup.Text;
-            Item.Group = string.IsNullOrWhiteSpace(Item.Group) ? null : Item.Group;
-            Item.Handler = ((ComboBoxItem)comboBoxType.SelectedItem).Value.HandlerKey;
+            Item.DisplayName = nullifyIfBlank(textBoxDisplayName.Text);
+            Item.Group = nullifyIfBlank(textBoxGroup.Text);
+            Item.Handler = ((ComboBoxItem)comboBoxType.SelectedItem)?.Value?.HandlerKey;
             Item.URI = textBoxResource.Text;
-            this.DialogResult = DialogResult.OK;
+            if (Validate(Item))
+            {
+                this.DialogResult = DialogResult.OK;
+            }
         }
     }
     class ComboBoxItem

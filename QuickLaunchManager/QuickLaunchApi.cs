@@ -50,7 +50,18 @@ namespace QuickLaunchManager
         {
             _repo.AddItem(item);
         }
-
+        public OperationResult Validate(QuickLaunchItem item)
+        {
+            var handler = item?.Handler;
+            if(handler==null || !_handlers.Keys.Contains(handler))
+            {
+                return new OperationResult(
+                    nameof(item.Handler),
+                    Severity.Error,
+                    "Unknown handler specified");
+            }
+            return _handlers[item.Handler].Validate(item);
+        }
         public void Open(Guid id) => Handle(_repo.GetItem(id));
         public bool Handle(QuickLaunchItem item)
         {

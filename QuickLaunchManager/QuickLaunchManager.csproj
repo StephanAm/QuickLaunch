@@ -83,6 +83,7 @@
     <Compile Include="Repo\XmlRepo\XmlRepo.cs" />
     <Compile Include="Validation\IItemValidator.cs" />
     <Compile Include="Validation\ItemValidator.cs" />
+    <Compile Include="Validation\OperationResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
