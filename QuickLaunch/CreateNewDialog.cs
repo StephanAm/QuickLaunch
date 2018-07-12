@@ -28,6 +28,7 @@ namespace QuickLaunch
             Item = new QuickLaunchItem();
             Item.DisplayName = textBoxDisplayName.Text;
             Item.Group = textBoxGroup.Text;
+            Item.Group = string.IsNullOrWhiteSpace(Item.Group) ? null : Item.Group;
             Item.Handler = ((ComboBoxItem)comboBoxType.SelectedItem).Value.HandlerKey;
             Item.URI = textBoxResource.Text;
             this.DialogResult = DialogResult.OK;

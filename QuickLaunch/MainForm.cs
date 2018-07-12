@@ -124,6 +124,7 @@ namespace QuickLaunch
             {
                 _quickLaunchApi.AddItem(dialog.Item);
             }
+            loadData();
         }
 
         private void createNewToolStripMenuItem_Click(object sender, EventArgs e)
