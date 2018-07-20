@@ -11,5 +11,6 @@ namespace QuickLaunchManager.Config
         public string AppName { get; set; }
         public string DataPath { get; set; }
         public string XmlRepoFileName { get; set; }
+        public string LogFileName { get; set; }
     }
 }

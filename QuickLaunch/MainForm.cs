@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,11 +52,13 @@ namespace QuickLaunch
         }
         private void LoadImages()
         {
+            var baseDir = AppDomain.CurrentDomain.BaseDirectory;
             foreach (var handlerInfo in _quickLaunchApi.GetHandlerInfo())
             {
+                var imagePath = Path.Combine(baseDir, handlerInfo.HandlerIcon);
                 _images[handlerInfo.HandlerKey] = handlerInfo.HandlerIcon == null
                     ? null
-                    : Image.FromFile(handlerInfo.HandlerIcon);
+                    : Image.FromFile(Path.Combine(baseDir,handlerInfo.HandlerIcon));
             }
         }
         private ToolStripMenuItem MapToToolStripMenuItem(QuickLaunchItem item)

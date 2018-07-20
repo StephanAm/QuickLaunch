@@ -11,6 +11,7 @@ namespace QuickLaunchManager
 {
     public class QuickLaunchApi
     {
+        private readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         private readonly IRepo _repo;
         private readonly IItemValidator _validator;
         private readonly IDictionary<string, BaseHandler> _handlers;
@@ -20,9 +21,21 @@ namespace QuickLaunchManager
             BaseHandler[] handlers,
             QuickLaunchAppConfig config)
         {
-            _repo = repo;
-            _validator = validator;
-            _handlers = handlers.ToDictionary(h => h.HandlerKey);
+            try
+            {
+                logger.Debug("Starting");
+                _repo = repo;
+                _validator = validator;
+                _handlers = handlers.ToDictionary(h => h.HandlerKey);
+            }
+            catch (Exception x)
+            {
+                logger.Error(x, "Contructor");
+            }
+            finally
+            {
+                logger.Debug("Complete");
+            }
         }
         public IEnumerable<HandlerInfo> GetHandlerInfo()
         {
